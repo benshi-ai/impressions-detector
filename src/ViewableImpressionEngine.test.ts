@@ -230,5 +230,94 @@ describe('ViewableImpressionManager', () => {
     })
 
 
+    it('Should trigger pending events when stopping',async () => {
+        let mockObserver = {
+            on: jest.fn(),
+            stop: () => {}
+        }
+
+        let hideCallback, showCallback;
+        let impressionCallback = jest.fn()
+
+        mockObserver.on.mockImplementation((event, cb) => {
+            if (event === 'hide') {
+                hideCallback = cb
+            } else {
+                showCallback = cb
+            }
+        })
+
+        const config = {
+            triggerInterval: 2000, // big trigger interval to make sure that the stop function is called before timeout
+            keepVisibleTimeout: 100
+        }
+        const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
+
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
+
+        const eventData = {
+            id: '12',
+            currency: 'EUR',
+            price: 100,
+            quantity: 2,
+            stock_status: 'in_stock'
+        }
+
+        // emulates the ImpressionObserver
+        showCallback('12', eventData)
+
+        await new Promise((r) => setTimeout(r, config.keepVisibleTimeout + delta));  // a bit more than a second, which is the time to consider it as impression
+
+        impressionManager.stop()
+
+        expect(impressionCallback).toBeCalledTimes(1)
+        expect(impressionCallback).toBeCalledWith(eventData)
+    })
+
+
+    it('Should not trigger pending events when stopping if they have not been enough time in screen',async () => {
+        let mockObserver = {
+            on: jest.fn(),
+            stop: () => {}
+        }
+
+        let hideCallback, showCallback;
+        let impressionCallback = jest.fn()
+
+        mockObserver.on.mockImplementation((event, cb) => {
+            if (event === 'hide') {
+                hideCallback = cb
+            } else {
+                showCallback = cb
+            }
+        })
+
+        const config = {
+            triggerInterval: 2000, // big trigger interval to make sure that the stop function is called before timeout
+            keepVisibleTimeout: 100
+        }
+        const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
+
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
+
+        const eventData = {
+            id: '12',
+            currency: 'EUR',
+            price: 100,
+            quantity: 2,
+            stock_status: 'in_stock'
+        }
+
+        // emulates the ImpressionObserver
+        showCallback('12', eventData)
+
+
+        impressionManager.stop()
+
+        expect(impressionCallback).toBeCalledTimes(0)
+    })
+
+
 })
+
 
