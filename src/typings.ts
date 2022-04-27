@@ -16,3 +16,7 @@ export interface IImpressionManager {
     start(containerClassname: string, itemClassname: string, appData: Dataset);
     stop()
 }
+
+export enum ImpressionEventType  {
+    Impression = "impression"
+}

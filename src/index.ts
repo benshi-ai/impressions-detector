@@ -1,4 +1,4 @@
-import ImpressionsDetector from "./ImpressionsDetector/ImpressionsDetector"
+import ImpressionsDetector from "./ImpressionsDetector"
 
 export * from "./typings"
 

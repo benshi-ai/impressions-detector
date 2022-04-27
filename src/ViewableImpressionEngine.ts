@@ -5,6 +5,7 @@ import {
     Dataset, 
     IImpression, 
     IImpressionManager, 
+    ImpressionEventType, 
     ViewableImpressionOptions
 } from './typings';
 
@@ -22,9 +23,6 @@ interface BsViewableImpressionManagerEvents {
     [ImpressionEventType.Impression]: (item: Dataset) => void,
 }
 
-export enum ImpressionEventType  {
-    Impression = "impression"
-}
 
 class ViewableImpressionEngine extends EventEmitter implements IImpressionManager {
     private alreadyVisibleImpressed
