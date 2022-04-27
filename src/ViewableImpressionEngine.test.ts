@@ -1,9 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { ItemAction } from "../modules/ECommerce/typings"
-import { CurrencyCode } from "../core/commonTypes"
-import ViewableImpressionManager from "../core/ViewableImpressionManager"
+import ViewableImpressionManager from "./ViewableImpressionEngine"
+import { ImpressionEventType } from "./typings"
 
 // time, in millis, to be sure that the "expect" is not called at the same time than the timeout
 const delta = 100 
@@ -32,11 +31,11 @@ describe('ViewableImpressionManager', () => {
 
         const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
 
-        impressionManager.on(ItemAction.Impression, impressionCallback)
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
 
         const eventData = {
             id: '12',
-            currency: 'EUR' as CurrencyCode,
+            currency: 'EUR',
             price: 100,
             quantity: 2,
             stock_status: 'in_stock'
@@ -49,7 +48,7 @@ describe('ViewableImpressionManager', () => {
         await new Promise((r) => setTimeout(r, config.triggerInterval + delta));
 
         expect(impressionCallback).toBeCalledTimes(1)
-        expect(impressionCallback).toBeCalledWith(eventData, expect.anything())
+        expect(impressionCallback).toBeCalledWith(eventData)
     })
 
     it('Should not trigger an impression event when a item has been detected and removed before one second', async () => {
@@ -75,11 +74,11 @@ describe('ViewableImpressionManager', () => {
 
         const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
 
-        impressionManager.on(ItemAction.Impression, impressionCallback)
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
 
         const eventData = {
             id: '12',
-            currency: 'EUR' as CurrencyCode,
+            currency: 'EUR',
             price: 100,
             quantity: 2,
             stock_status: 'in_stock'
@@ -115,11 +114,11 @@ describe('ViewableImpressionManager', () => {
         }
         const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
 
-        impressionManager.on(ItemAction.Impression, impressionCallback)
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
 
         const eventData = {
             id: '12',
-            currency: 'EUR' as CurrencyCode,
+            currency: 'EUR',
             price: 100,
             quantity: 2,
             stock_status: 'in_stock'
@@ -134,7 +133,7 @@ describe('ViewableImpressionManager', () => {
         await new Promise((r) => setTimeout(r, config.keepVisibleTimeout + delta));
 
         expect(impressionCallback).toBeCalledTimes(1)
-        expect(impressionCallback).toBeCalledWith(eventData, expect.anything())
+        expect(impressionCallback).toBeCalledWith(eventData)
     }, 10000)
 
 
@@ -160,11 +159,11 @@ describe('ViewableImpressionManager', () => {
         }
         const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
 
-        impressionManager.on(ItemAction.Impression, impressionCallback)
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
 
         const eventData = {
             id: '12',
-            currency: 'EUR' as CurrencyCode,
+            currency: 'EUR',
             price: 100,
             quantity: 2,
             stock_status: 'in_stock'
@@ -177,7 +176,7 @@ describe('ViewableImpressionManager', () => {
         hideCallback('12')
 
         expect(impressionCallback).toBeCalledTimes(1)
-        expect(impressionCallback).toBeCalledWith(eventData, expect.anything())
+        expect(impressionCallback).toBeCalledWith(eventData)
     }, 10000)
 
     it('Should trigger again same IDs after restarting', async () => {
@@ -205,13 +204,13 @@ describe('ViewableImpressionManager', () => {
 
         const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
 
-        impressionManager.on(ItemAction.Impression, impressionCallback)
+        impressionManager.on(ImpressionEventType.Impression, impressionCallback)
 
         impressionManager.start('aaa', 'bb', 'searchId-1')
 
         const eventData = {
             id: '12',
-            currency: 'EUR' as CurrencyCode,
+            currency: 'EUR',
             price: 100,
             quantity: 2,
             stock_status: 'in_stock'
