@@ -4,6 +4,16 @@
   "description": "",
   "main": "lib/lib.js",
   "types": "lib/typings.d.ts",
+  "keywords": [
+    "impressions",
+    "advertising",
+    "interaction",
+    "benshi"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "append-declaration": "node scripts/export-module.js",
     "lint": "eslint lib test",
