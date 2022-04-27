@@ -6,7 +6,7 @@ module.exports = {
   mode: process.env.NODE_ENV ? 'development' : 'production',
   watch: process.env.NODE_ENV === 'dev',
   entry: {
-    lib: path.resolve(__dirname, './src/index.ts'),
+    lib: path.resolve(__dirname, './src/init.ts'),
   },
   output: {
     path: path.resolve(__dirname, './lib'),

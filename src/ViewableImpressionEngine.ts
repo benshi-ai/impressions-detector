@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import BsViewableImpressionObserver, { ImpressionObservedTypes } from './BsViewableImpressionObserver'
+import BsViewableImpressionObserver, { ImpressionObservedTypes } from './ViewableImpressionObserver'
 
 import { 
     Dataset, 
