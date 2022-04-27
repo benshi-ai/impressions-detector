@@ -136,7 +136,6 @@ describe('ViewableImpressionManager', () => {
         expect(impressionCallback).toBeCalledWith(eventData)
     }, 10000)
 
-
     it('Should trigger an impression event when it has been removed from screen but the checking interval not fired yet', async () => {
         let mockObserver = {
             on: jest.fn(),
@@ -154,7 +153,7 @@ describe('ViewableImpressionManager', () => {
         })
 
         const config = {
-            triggerInterval: 200,
+            triggerInterval: 2000,
             keepVisibleTimeout: 100
         }
         const impressionManager = new ViewableImpressionManager(mockObserver as any, config)
@@ -229,5 +228,7 @@ describe('ViewableImpressionManager', () => {
 
         expect(impressionCallback).toBeCalledTimes(2)
     })
+
+
 })
 

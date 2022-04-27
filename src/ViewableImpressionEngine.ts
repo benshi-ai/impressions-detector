@@ -43,8 +43,6 @@ class ViewableImpressionEngine extends EventEmitter implements IImpressionManage
         this.alreadyVisibleImpressed = new Set()
         this.pendingImpressions = {}
 
-        console.warn('[ViewableImpressionEngine] [constructor] from lib')
-
         if (options) {
             this.options = Object.assign(this.options, options)
         }
