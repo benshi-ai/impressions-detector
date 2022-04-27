@@ -28,14 +28,15 @@ class BsViewableImpressionObserver extends EventEmitter {
     private containerSelector = ''
     private itemSelector = ''
 
-    constructor() {
+    constructor(intersectionThreshold: number) {
         super()
 
         let intersectionObserverOptions = {
             root: null,
             rootMargin: "0px",
-            threshold: 1
+            threshold: intersectionThreshold
         };
+
         this.intersectionObserver = new IntersectionObserver(
             (entries, observer) => this.intersectionHandler(entries, observer),
             intersectionObserverOptions

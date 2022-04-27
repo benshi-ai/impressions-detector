@@ -31,21 +31,16 @@ class ViewableImpressionEngine extends EventEmitter implements IImpressionManage
     private containerClassname
     private itemClassname
     private appData:any = {}
+    private options
 
-    private options: ViewableImpressionOptions = {
-        triggerInterval: 2000,
-        keepVisibleTimeout: 1000
-    }
 
     // at least one second in the screen
-    constructor(impressionObserver: BsViewableImpressionObserver, options?: Partial<ViewableImpressionOptions>) {
+    constructor(impressionObserver: BsViewableImpressionObserver, options: Partial<ViewableImpressionOptions>) {
         super()
         this.alreadyVisibleImpressed = new Set()
         this.pendingImpressions = {}
 
-        if (options) {
-            this.options = Object.assign(this.options, options)
-        }
+        this.options = options
 
         this.impressionObserver = impressionObserver
 

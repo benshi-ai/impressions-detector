@@ -9,7 +9,8 @@ export interface IImpression {
 
 export interface ViewableImpressionOptions {
     triggerInterval: number,
-    keepVisibleTimeout: number
+    keepVisibleTimeout: number,
+    intersectionThreshold: number
 }
 
 export interface IImpressionManager {
