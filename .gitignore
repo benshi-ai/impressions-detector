@@ -1,0 +1,7 @@
+.idea
+lib/
+stats.json
+node_modules
+yarn-error.log
+coverage/
+html/

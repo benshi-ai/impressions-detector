@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom"
+    ],
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "module": "commonjs",
+    "target": "es5",
+    "declaration": true,
+    "outDir": "./lib",
+  },
+  "include": [
+    "src/**/typings.ts"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@benshi.ai/impressions-detector",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/lib.js",
+  "types": "lib/typings.d.ts",
+  "scripts": {
+    "append-declaration": "node scripts/export-module.js",
+    "lint": "eslint lib test",
+    "dev": "NODE_ENV=dev webpack",
+    "html": "typedoc --out html --entryPoints src/index.ts --tsconfig tsconfig.typedoc.json --excludePrivate --excludeInternal",
+    "build:types": "tsc --emitDeclarationOnly --declaration --out lib/typings.d.ts  && npm run append-declaration",
+    "build": "webpack && npm run build:types",
+    "publish-lib": "npm run build && npm publish",
+    "publish-beta": "npm run build && npm publish --tag beta",
+    "publish-dryrun": "npm run build && npm publish --dry-run",
+    "test": "jest --verbose --detectOpenHandles --forceExit",
+    "test-coverage": "jest --verbose --collectCoverage --detectOpenHandles --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benshi-ai/impressions-detector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benshi-ai/impressions-detector/issues"
+  },
+  "homepage": "https://github.com/benshi-ai/impressions-detector#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-typescript": "^7.14.5",
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "eslint": "^7.31.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.4",
+    "ts-loader": "^9.2.4",
+    "ts-node": "^10.1.0",
+    "typedoc": "^0.22.11",
+    "typedoc-plugin-missing-exports": "^0.22.6",
+    "typedoc-twilio-theme": "^1.0.1",
+    "typescript": "^4.5.5",
+    "webpack": "^5.46.0",
+    "webpack-bundle-analyzer": "^4.4.2",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "core-js": "2"
+  }
+}
