@@ -1,6 +1,6 @@
 {
   "name": "@benshi.ai/impressions-detector",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Framework agnostic library to detect viewable impressions",
   "main": "lib/lib.js",
   "types": "lib/typings.d.ts",
