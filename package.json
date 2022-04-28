@@ -1,6 +1,6 @@
 {
   "name": "@benshi.ai/impressions-detector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Framework agnostic library to detect viewable impressions",
   "main": "lib/lib.js",
   "types": "lib/typings.d.ts",
@@ -8,7 +8,8 @@
     "impressions",
     "advertising",
     "interaction",
-    "benshi"
+    "benshi",
+    "intersection", "inviewport"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
