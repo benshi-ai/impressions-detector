@@ -14,13 +14,15 @@ Given an HTML structure like this:
 
     <div class="container">
         <div 
-            class="item-element" 
+            class="item-element"
+            data-log-id='unique-element-id'
             data-key1="value11"
             data-key2="value21">
         </div>
 
         <div 
             class="item-element" 
+            data-log-id='unique-element-id'
             data-key1="value12"
             data-key2="value22">
         </div>
@@ -46,12 +48,14 @@ Note the callbacks parameters `dataset` and `appData`:
 * `dataset` contains all the elements within the HTML element dataset. For example, for the first `div` it will contain:
     ```js 
     {
+        "id": "unique-element-id"
         "key1": "value11"
         "key2": "value21"
     }
     ```
 * `yourData` is an arbitrary object. Depending on the application use case it may be interesting to share information between the code that initializes the `impressionDetector` and the code that receives the events
 
+> **note that the key `log-id` is mandatory**
 
 ## Configuration
 Some parameters may be adapted to the application needs. The configuration options accepted by `ImpressionsDetector` are:

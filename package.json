@@ -9,7 +9,8 @@
     "advertising",
     "interaction",
     "benshi",
-    "intersection", "inviewport"
+    "intersection",
+    "inviewport"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
